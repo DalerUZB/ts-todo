@@ -1,31 +1,36 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
-// import type { RootState } from '../../app/store'
 
-interface CounterState {
-    value: number
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { RootState } from '../Redux/Store';  // RootState importini tekshiring
+
+interface Todo {
+    todo: string;
+    isComplated: boolean;
+    id: number;
 }
 
-const initialState: CounterState = {
-    value: 2,
+// TodoState interfeysi
+interface TodoState {
+    todo: Todo[];
 }
 
-export const counterSlice = createSlice({
-    name: "counter",
+// Dastlabki state
+const initialState: TodoState = {
+    todo: [],
+};
+
+// Redux slice yaratish
+export const TodoSlice = createSlice({
+    name: 'todo',
     initialState,
     reducers: {
-        decrement: (state): void => {
-            state.value -= 1
+        addTodo: (state, action: PayloadAction<Todo>) => {
+            state.todo.push(action.payload);
         },
-        increment: (state): void => {
-            state.value += 1
-        }
-    }
+    },
+});
 
-})
+export const { addTodo } = TodoSlice.actions;
 
-export const { increment, decrement } = counterSlice.actions
+export const selectTodos = (state: RootState) => state;
 
-// export const selectCount = (state: RootState) => state.counter.value
-
-export default counterSlice.reducer
+export default TodoSlice.reducer;

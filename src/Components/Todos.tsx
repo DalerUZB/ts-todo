@@ -12,9 +12,7 @@ const Todo: React.FC = () => {
 
   return (
     <TodoItem>
-      <TodoText>
-        "assalom alekum men bugun oshga soat 7 da borishim kerak
-      </TodoText>
+      <TodoText>""</TodoText>
       <ButtonContainer>
         <EditButton onClick={() => onEditFunc()}>
           <FaEdit />
